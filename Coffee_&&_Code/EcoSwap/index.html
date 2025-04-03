@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoSwap - Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      /* General Styles */
+      body {
+        background-color: #f5f5f5;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Navbar */
+      .navbar {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: url("https://media.gettyimages.com/id/1226020103/video/circuit-board-background-copy-space-green-loopable-animation-computer-data-technology.jpg?s=640x640&k=20&c=DKSLcj9L3fxF1I7vUYRCYc3MN1EuSWhQLXsgFU3FanA=")
+          no-repeat center center/cover;
+          background-size: cover;
+        height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        animation: zoomEffect 5s infinite alternate;
+      }
+
+      @keyframes zoomEffect {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.05);
+        }
+      }
+
+      /* Home Container */
+      .home-container {
+        text-align: center;
+        padding: 40px;
+      }
+
+      .btn-custom {
+        width: 100%;
+        margin: 10px 0;
+        font-size: 18px;
+        padding: 12px;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .btn-custom:hover {
+        transform: scale(1.08);
+      }
+
+     /* How It Works Section */
+.work-card {
+    background: linear-gradient(135deg, #198754, #28a745); /* Green gradient */
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+.work-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+.work-icon {
+    font-size: 50px;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+
+      /* Item Cards */
+      .item-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .item-card img {
+        height: 200px;
+        object-fit: contain;
+        width: 100%;
+        background-color: #f8f9fa;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .item-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .item-card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Footer */
+      footer {
+        background-color: #198754;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+      <div class="container">
+        <a class="navbar-brand text-white fw-bold" href="#">EcoSwap</a>
+        <div>
+          <a href="signup.html" class="btn btn-light me-2">Sign Up</a>
+          <a href="login.html" class="btn btn-outline-light">Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="color: aquamarine;">
+      Join the movement for a sustainable future! 🌱
+    </div>
+
+    <!-- Introduction -->
+    <div class="container home-container">
+      <h2 class="fw-bold">What is EcoSwap?</h2>
+      <p class="text-muted">
+        EcoSwap is a platform where you can exchange or donate gently used items
+        like clothes, books, and electronics to reduce waste and promote sustainability.
+      </p>
+      <a href="products.html" class="btn btn-primary btn-custom">Browse Items</a>
+      <a href="dashboard.html" class="btn btn-success btn-custom">Post an Item</a>
+      <a href="about.html" class="btn btn-outline-dark btn-custom">Learn More</a>
+    </div>
+    
+    <!-- Featured Items -->
+    <div class="container">
+        <h2 class="text-center fw-bold mt-5">Featured Items</h2>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <div class="card item-card">
+              <img src="https://www.novelsuspects.com/wp-content/uploads/2022/01/Short-Crime-Fiction-You-Can-Devour-in-One-Sitting_NovelSuspects.png?w=768" class="card-img-top" alt="Books" />
+              <div class="card-body text-center">
+                <h5 class="card-title">Books Collection</h5>
+                <p>A set of classic novels in great condition.</p>
+                <a href="category-details.html?category=books" class="btn btn-success">View Details</a>
+
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <div class="card item-card">
+              <img src="https://cdn.mos.cms.futurecdn.net/5LPVHHJbFHetFAJW8n3bHT-1280-80.jpg" class="card-img-top" alt="Clothes" />
+              <div class="card-body text-center">
+                <h5 class="card-title">Trendy Clothes</h5>
+                <p>Gently used stylish clothes for men & women.</p>
+                <a href="category-details.html?category=clothes" class="btn btn-success">View Details</a>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <div class="card item-card">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgnTTduE_Sd3J5Kf-0Gld1mtc7P3Y45PDwJ1zFWzhp-Ypq4cWCZFzkaG7mCn-i5EOHfG8&usqp=CAU" class="card-img-top" alt="Electronics" />
+              <div class="card-body text-center">
+                <h5 class="card-title">Used Electronics</h5>
+                <p>Gadgets and devices still in working condition.</p>
+                <a href="category-details.html?category=electronics" class="btn btn-success">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+   <!-- How It Works -->
+<div class="container mt-5">
+    <h2 class="text-center fw-bold mb-4">How It Works</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="work-card">
+                <i class="fas fa-upload work-icon"></i>
+                <h4 class="mt-3">List Your Item</h4>
+                <p>Upload details of items you want to exchange or donate.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="work-card">
+                <i class="fas fa-search work-icon"></i>
+                <h4 class="mt-3">Find What You Need</h4>
+                <p>Browse items from other users based on category and location.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="work-card">
+                <i class="fas fa-handshake work-icon"></i>
+                <h4 class="mt-3">Swap & Save</h4>
+                <p>Connect with users and arrange the exchange or donation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2025 EcoSwap | A Sustainable Future Awaits
+    </footer>
+  </body>
+</html>

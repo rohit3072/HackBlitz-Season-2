@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - EcoSwap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: "Poppins", sans-serif;
+        }
+        .category-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .category-card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="#">EcoSwap</a>
+            <a href="index.html" class="btn btn-light">Home</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center fw-bold">Choose a Category</h2>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card category-card">
+                    <img src="https://www.novelsuspects.com/wp-content/uploads/2022/01/Short-Crime-Fiction-You-Can-Devour-in-One-Sitting_NovelSuspects.png?w=768" class="card-img-top" alt="Books">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Books</h5>
+                        <a href="category-details.html?category=books" class="btn btn-success">View Books</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card category-card">
+                    <img src="https://cdn.mos.cms.futurecdn.net/5LPVHHJbFHetFAJW8n3bHT-1280-80.jpg" class="card-img-top" alt="Clothes">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Clothes</h5>
+                        <a href="category-details.html?category=clothes" class="btn btn-success">View Clothes</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card category-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgnTTduE_Sd3J5Kf-0Gld1mtc7P3Y45PDwJ1zFWzhp-Ypq4cWCZFzkaG7mCn-i5EOHfG8&usqp=CAU" class="card-img-top" alt="Electronics">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Electronics</h5>
+                        <a href="category-details.html?category=electronics" class="btn btn-success">View Electronics</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center bg-success text-white py-3 mt-5">
+        &copy; 2025 EcoSwap | A Sustainable Future Awaits
+    </footer>
+
+</body>
+</html>

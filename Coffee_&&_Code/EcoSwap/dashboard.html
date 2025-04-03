@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - EcoSwap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .dashboard-container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .profile-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .item-card img {
+            height: 150px;
+            object-fit: contain;
+        }
+        .item-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .item-card:hover {
+            transform: scale(1.05);
+        }
+        .alert-success {
+            display: none;
+        }
+        .preview-img {
+            display: none;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container">
+            <a class="navbar-brand text-white" href="#">EcoSwap</a>
+            <a href="index.html" class="btn btn-light">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="container mt-4 dashboard-container">
+        <h2>Welcome, <span id="user-name"></span>!</h2>
+
+        <!-- User Profile -->
+        <div class="profile-box mb-4">
+            <h4><i class="fas fa-user-circle"></i> Profile</h4>
+            <p><strong>Name:</strong> <span id="profile-name"></span></p>
+            <p><strong>Email:</strong> <span id="profile-email"></span></p>
+        </div>
+
+        <!-- Notifications -->
+        <div class="profile-box mb-4">
+            <h4><i class="fas fa-bell"></i> Notifications</h4>
+            <ul id="notifications" class="list-unstyled">
+                <li>No new notifications</li>
+            </ul>
+        </div>
+
+        <!-- Your Listings -->
+        <h3>Your Listings</h3>
+        <div class="row" id="user-items">
+            <p>No items listed yet.</p>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-alert" class="alert alert-success mt-3">
+            Item added successfully!
+        </div>
+
+        <!-- Add New Item -->
+        <h3 class="mt-4">Add New Item</h3>
+        <div class="profile-box">
+            <input type="text" id="item-name" class="form-control my-2" placeholder="Item Name">
+
+            <!-- URL Input Option -->
+            <input type="url" id="item-url" class="form-control my-2" placeholder="Enter Image URL" oninput="previewURL()">
+
+            <p class="text-center my-2">OR</p>
+
+            <!-- File Input for Image Selection from Gallery -->
+            <input type="file" id="item-image" class="form-control my-2" accept="image/*" onchange="previewImage(event)">
+
+            <!-- Image Preview -->
+            <img id="image-preview" class="preview-img" alt="Image Preview">
+
+            <button class="btn btn-success w-100 mt-2" onclick="addItem()">Add Item</button>
+        </div>
+    </div>
+
+    <script>
+        // Load stored user data
+        let storedUser = JSON.parse(localStorage.getItem("user"));
+        if (storedUser) {
+            document.getElementById("user-name").innerText = storedUser.name;
+            document.getElementById("profile-name").innerText = storedUser.name;
+            document.getElementById("profile-email").innerText = storedUser.email || "Not provided";
+        } else {
+            window.location.href = "login.html"; // Redirect if not logged in
+        }
+
+        // Load saved items
+        let userItems = JSON.parse(localStorage.getItem("items")) || [];
+        displayItems();
+
+        // Function to preview image from gallery
+        function previewImage(event) {
+            let imagePreview = document.getElementById("image-preview");
+            let file = event.target.files[0];
+
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to preview image from URL
+        function previewURL() {
+            let urlInput = document.getElementById("item-url").value;
+            let imagePreview = document.getElementById("image-preview");
+
+            if (urlInput) {
+                imagePreview.src = urlInput;
+                imagePreview.style.display = "block";
+            } else {
+                imagePreview.style.display = "none";
+            }
+        }
+
+        // Function to add item
+        function addItem() {
+            let name = document.getElementById("item-name").value;
+            let urlInput = document.getElementById("item-url").value;
+            let fileInput = document.getElementById("item-image");
+            let successAlert = document.getElementById("success-alert");
+
+            if (!name) {
+                alert("Please enter an item name.");
+                return;
+            }
+
+            let imageUrl = "";
+
+            if (urlInput) {
+                imageUrl = urlInput;
+                saveItem(name, imageUrl);
+            } else if (fileInput.files.length > 0) {
+                let file = fileInput.files[0];
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imageUrl = e.target.result;
+                    saveItem(name, imageUrl);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("Please provide an image URL or select an image.");
+            }
+        }
+
+        // Function to save item
+        function saveItem(name, imageUrl) {
+            let newItem = { name, imageUrl };
+            userItems.push(newItem);
+            localStorage.setItem("items", JSON.stringify(userItems));
+            displayItems();
+
+            // Clear fields
+            document.getElementById("item-name").value = "";
+            document.getElementById("item-url").value = "";
+            document.getElementById("item-image").value = "";
+            document.getElementById("image-preview").style.display = "none";
+            document.getElementById("success-alert").style.display = "block";
+
+            setTimeout(() => document.getElementById("success-alert").style.display = "none", 2000);
+        }
+
+        // Function to delete item with confirmation
+        function deleteItem(index) {
+            let confirmDelete = confirm("Are you sure you want to delete this item?");
+            if (confirmDelete) {
+                userItems.splice(index, 1);
+                localStorage.setItem("items", JSON.stringify(userItems));
+                displayItems();
+            }
+        }
+
+        // Function to display items
+        function displayItems() {
+            let container = document.getElementById("user-items");
+            container.innerHTML = "";
+
+            if (userItems.length === 0) {
+                container.innerHTML = "<p>No items listed yet.</p>";
+                return;
+            }
+
+            userItems.forEach((item, index) => {
+                let itemCard = `
+                    <div class="col-md-4 mb-3">
+                        <div class="card item-card">
+                            <img src="${item.imageUrl}" class="card-img-top" alt="${item.name}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">${item.name}</h5>
+                                <button class="btn btn-danger btn-sm" onclick="deleteItem(${index})">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += itemCard;
+            });
+        }
+    </script>
+
+</body>
+</html>
